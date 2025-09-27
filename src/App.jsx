@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 
 const Card = ({movieTitle}) => {
+
+ 
   const [hasLiked, setHasLiked] = useState(false);
+
+  const [count, setCount] = useState(0);
+
+  useEffect( () => {
+    console.log(`${movieTitle} has been liked: ${hasLiked}`)
+  }, [hasLiked]);
+
+// using dependency array [] we assure that when we render the element then it will work 
+
+
+
   return(
-    <div className="card-style">
-      <h4>{movieTitle}</h4>
+    <div className="card-style" onClick={() => setCount( (preCount) => preCount + 1)}>
+      <h4>{movieTitle} <br /> {count}</h4>
 
       <button onClick={() => setHasLiked(!hasLiked)}>
         {hasLiked ? '❤️' : '💛'}
